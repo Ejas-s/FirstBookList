@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第一弹书单</title>
+  <style>
+    body {
+      text-align: center;
+      font-size: 25px;
+    }
+
+    h2 {
+      font-size: 35px;
+    }
+
+    p {
+      font-size: 25px;
+    }
+
+    button,
+    input {
+      font-size: 25px;
+    }
+
+
+    #warning,
+    #incorrect {
+      color: red;
+      font-weight: bold;
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <h2>第一弹书单例</h2>
+  <p>在输入框中输入最后一篇推荐文的作者姓名后，点击按钮查看书单链接。</p>
+
+  <input type="text" id="inputBox" placeholder="请输入内容">
+  <button onclick="checkInput()">提交</button>
+  <p id="warning">请输入内容！</p>
+  <p id="incorrect">答案不正确，请确保连名带姓并注意大小写，名与姓之间空格</p>
+  <p id="hiddenLink" style="display:none;">
+    <a id="link" href="" target="_blank">你输入了正确的名字！点击访问链接。</a>
+  </p>
+
+  <script>
+    function checkInput() {
+      const inputBox = document.getElementById("inputBox");
+      const hiddenLink = document.getElementById("hiddenLink");
+      const warning = document.getElementById("warning");
+      const incorrect = document.getElementById("incorrect");
+      const link = document.getElementById("link");
+
+
+      const Answer = "R2lsbCBNY0tuaWdodA==";
+      const Link = "aHR0cHM6Ly90aW5ja2xlc2Rlc2lnbi5ub3Rpb24uc2l0ZS8xMzE1ZjhjMjZjODE4MDhlOTQ2MmVlZTNhNjJjMTg3Mj9wdnM9NzQ";
+
+
+      if (inputBox.value === "") {
+        warning.style.display = "block";
+        hiddenLink.style.display = "none";
+        incorrect.style.display = "none";
+      } else {
+        warning.style.display = "none";
+
+
+        if (btoa(inputBox.value) === Answer) {
+          link.href = atob(Link);
+          hiddenLink.style.display = "block";
+          incorrect.style.display = "none";
+        } else {
+          hiddenLink.style.display = "none";
+          incorrect.style.display = "block";
+        }
+      }
+    }
+  </script>
+</body>
+
+</html>
